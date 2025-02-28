@@ -42,20 +42,5 @@ class Search:
     def retrieve_document(self, id):
         return self.es.get(index='my_documents', id=id)
 
-    def extract_filters(query):
-        filters = []
 
-        filter_regex = r'category:([^\s]+)\s*'
-        m = re.search(filter_regex, query)
-        if m:
-            filters.append({
-                'term': {
-                    'category.keyword': {
-                        'value': m.group(1)
-                    }
-                }
-            })
-            query = re.sub(filter_regex, '', query).strip()
-
-        return {'filter': filters}, query
     
